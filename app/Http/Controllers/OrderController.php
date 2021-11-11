@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Order;
 use App\Models\Table;
@@ -85,5 +86,60 @@ class OrderController extends Controller
         ->Where('name', $request->search)
         ->get();
          return view('search',compact('dishes','tables','status','orders'));
+    }
+
+    public function main() {
+
+        
+        $tables = Table::all();
+
+    //----------- order List -----------------
+        $rawStatus = config('res.order_status');
+        $status = array_flip($rawStatus);
+        $orders = Order::where('status',4)->get();
+
+    //----------  main ----------------------
+       
+        $dishes = DB::table('dishes')
+        ->Where('category_id', 1)
+        ->get();
+
+        return view('main',compact('dishes','tables','status','orders'));
+    }
+
+    public function burmese() {
+
+        $tables = Table::all();
+
+    //----------- order List -----------------
+        $rawStatus = config('res.order_status');
+        $status = array_flip($rawStatus);
+        $orders = Order::where('status',4)->get();
+
+    //----------  main ----------------------
+
+        $dishes = DB::table('dishes')
+        ->Where('category_id', 4)
+        ->get();
+
+        return view('burmese',compact('dishes','tables','status','orders'));
+    }
+
+    public function japanese() {
+
+        $tables = Table::all();
+
+    //----------- order List -----------------
+        $rawStatus = config('res.order_status');
+        $status = array_flip($rawStatus);
+        $orders = Order::where('status',4)->get();
+
+    //----------  main ----------------------
+
+        $dishes = DB::table('dishes')
+        ->Where('category_id', 2)
+        ->get();
+
+        return view('japanese',compact('dishes','tables','status','orders'));
     }
 }

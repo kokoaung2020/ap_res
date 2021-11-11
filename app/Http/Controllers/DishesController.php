@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DishCreateRequest;
+use App\Http\Requests\CategoryCreateRequest;
 
 class DishesController extends Controller
 {
